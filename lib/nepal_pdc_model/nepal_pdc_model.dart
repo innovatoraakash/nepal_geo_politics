@@ -3,6 +3,7 @@ import 'province.dart';
 import 'vdc.dart';
 import 'zone.dart';
 
+///This class contains all the available lists of administrative ares of nepal
 class NepalPdcModel {
   List<Province>? province;
   List<Zone>? zone;

@@ -1,12 +1,12 @@
 var nepalJson = {
   "province": [
-    {"id": 1, "text": "Province No.1","textNP": "प्रदेश नंबर १" },
-    {"id": 2, "text": "Madhesh Province","textNP": "मधेश प्रदेश"},
-    {"id": 3, "text": "Bagmati Province","textNP": "बाग्मती प्रदेश"},
-    {"id": 4, "text": "Gandaki Province","textNP": "गण्डकी प्रदेश"},
-    {"id": 5, "text": "Lumbini Provience","textNP": "लुम्बिनी प्रदेश"},
-    {"id": 6, "text": "Karnali Province","textNP": "कर्णाली प्रदेश"},
-    {"id": 7, "text": "Sudur Paschim Province","textNP": "सुदूर पश्चिम प्रदेश"}
+    {"id": 1, "text": "Province No.1", "textNP": "प्रदेश नंबर १"},
+    {"id": 2, "text": "Madhesh Province", "textNP": "मधेश प्रदेश"},
+    {"id": 3, "text": "Bagmati Province", "textNP": "बाग्मती प्रदेश"},
+    {"id": 4, "text": "Gandaki Province", "textNP": "गण्डकी प्रदेश"},
+    {"id": 5, "text": "Lumbini Provience", "textNP": "लुम्बिनी प्रदेश"},
+    {"id": 6, "text": "Karnali Province", "textNP": "कर्णाली प्रदेश"},
+    {"id": 7, "text": "Sudur Paschim Province", "textNP": "सुदूर पश्चिम प्रदेश"}
   ],
   "zone": [
     {"id": 1, "text": "Mechi", "textNP": "मेची"},

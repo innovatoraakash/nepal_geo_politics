@@ -1,6 +1,11 @@
+///there are 14 zones which contains the district
 class Zone {
   int? id;
+
+  ///name of zone in English
   String? text;
+
+  ///name of zone in Nepali
   String? textNp;
 
   Zone({this.id, this.text, this.textNp});

@@ -1,6 +1,6 @@
 name: nepal_administrative_division
 description: A package that can be used to get the administrative level dropdown of Nepal
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/innovatoraakash/nepal_geo_politics
 
 environment:

@@ -1,6 +1,11 @@
+///local level area which lies under [district]
 class Vdc {
   int? id;
+
+  ///this is used from district class
   int? districtid;
+
+  ///name of the local area
   String? text;
 
   Vdc({this.id, this.districtid, this.text});

@@ -1,8 +1,14 @@
+///2nd level of administrative area in Nepal
+///lies under [Province] or [Zone]
 class District {
   int? id;
   int? zoneid;
   int? stateid;
+
+  ///Name of [District] in English
   String? text;
+
+  ///Name of [District] in Nepali
   String? textNp;
 
   District({this.id, this.zoneid, this.stateid, this.text, this.textNp});

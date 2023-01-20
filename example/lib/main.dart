@@ -17,7 +17,6 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            
             const NepalAdminstrativeArea(
               areaType: AreaType.province,
             ),
