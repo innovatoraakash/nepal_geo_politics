@@ -146,10 +146,10 @@ class _NepalAdminstrativeAreaState extends State<NepalAdminstrativeArea> {
             areaType: widget.areaType,
             ontap: (String val) {
               selectedArea =
-                  nepalPdc.vdc?.firstWhere((element) => element.text == val).id;
+                  nepalPdc.localLevel?.firstWhere((element) => element.text == val).id;
             },
             label: widget.localAreaLabel ?? areaLabel,
-            items: nepalPdc.vdc!
+            items: nepalPdc.localLevel!
                 .map((e) => StringCallback(e.text.toString(), () {}))
                 .toList());
       default:
@@ -205,12 +205,12 @@ class _NepalAdminstrativeAreaState extends State<NepalAdminstrativeArea> {
           customDropdownField(
               areaType: AreaType.localLevel,
               ontap: (String val) {
-                selectedArea = nepalPdc.vdc
+                selectedArea = nepalPdc.localLevel
                     ?.firstWhere((element) => element.text == val)
                     .id;
               },
               label: widget.localAreaLabel ?? areaLabel,
-              items: nepalPdc.vdc!
+              items: nepalPdc.localLevel!
                   .where((element) => element.districtid == selectedDistrict)
                   .map((e) => StringCallback(e.text.toString(), () {
                         // ref.read(selectedAreaProvider.notifier).state = e.id!;

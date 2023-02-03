@@ -1,5 +1,5 @@
 ///local level area which lies under [district]
-class Vdc {
+class LocalLevel {
   int? id;
 
   ///this is used from district class
@@ -8,9 +8,9 @@ class Vdc {
   ///name of the local area
   String? text;
 
-  Vdc({this.id, this.districtid, this.text});
+  LocalLevel({this.id, this.districtid, this.text});
 
-  factory Vdc.fromJson(Map<String, dynamic> json) => Vdc(
+  factory LocalLevel.fromJson(Map<String, dynamic> json) => LocalLevel(
         id: json['id'] as int?,
         districtid: json['districtid'] as int?,
         text: json['text'] as String?,
