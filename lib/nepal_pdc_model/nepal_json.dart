@@ -2,7 +2,7 @@ var nepalJson = {
   "province": [
     {"id": 1, "text": "Province No.1", "textNP": "प्रदेश नंबर १"},
     {"id": 2, "text": "Madhesh Province", "textNP": "मधेश प्रदेश"},
-    {"id": 3, "text": "Bagmati Province", "textNP": "बाग्मती प्रदेश"},
+    {"id": 3, "text": "Bagmati Province", "textNP": "बागमती प्रदेश"},
     {"id": 4, "text": "Gandaki Province", "textNP": "गण्डकी प्रदेश"},
     {"id": 5, "text": "Lumbini Provience", "textNP": "लुम्बिनी प्रदेश"},
     {"id": 6, "text": "Karnali Province", "textNP": "कर्णाली प्रदेश"},
@@ -13,7 +13,7 @@ var nepalJson = {
     {"id": 2, "text": "Koshi", "textNP": "कोशी"},
     {"id": 3, "text": "Sagarmatha", "textNP": "सगरमाथा"},
     {"id": 4, "text": "Janakpur", "textNP": "जनकपुर"},
-    {"id": 5, "text": "Bagmati", "textNP": "बागमति"},
+    {"id": 5, "text": "Bagmati", "textNP": "बागमती"},
     {"id": 6, "text": "Narayani", "textNP": "नारायणी"},
     {"id": 7, "text": "Gandaki", "textNP": "गण्डकी"},
     {"id": 8, "text": "Dhawalagiri", "textNP": "धवलागिरी"},
