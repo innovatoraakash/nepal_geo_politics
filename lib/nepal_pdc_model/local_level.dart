@@ -10,7 +10,7 @@ class LocalLevel {
 
   String? textNp;
 
-  Vdc({this.id, this.districtid, this.text, this.textNp});
+  LocalLevel({this.id, this.districtid, this.text, this.textNp});
 
   factory LocalLevel.fromJson(Map<String, dynamic> json) => LocalLevel(
         id: json['id'] as int?,

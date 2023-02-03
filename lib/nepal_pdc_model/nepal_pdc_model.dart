@@ -22,7 +22,7 @@ class NepalPdcModel {
         district: (json['district'] as List<dynamic>?)
             ?.map((e) => District.fromJson(e as Map<String, dynamic>))
             .toList(),
-        localLevel: (json['localLevel'] as List<dynamic>?)
+        localLevel: (json['vdc'] as List<dynamic>?)
             ?.map((e) => LocalLevel.fromJson(e as Map<String, dynamic>))
             .toList(),
       );

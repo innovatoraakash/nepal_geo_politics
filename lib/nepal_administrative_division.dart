@@ -146,11 +146,11 @@ class _NepalAdminstrativeAreaState extends State<NepalAdminstrativeArea> {
             areaType: widget.areaType,
             ontap: (String val) {
               selectedArea =
-                  nepalPdc.vdc?.firstWhere((element) => element.text == val).id;
+                  nepalPdc.localLevel?.firstWhere((element) => element.text == val).id;
               setState(() {});
             },
             label: widget.localAreaLabel ?? areaLabel,
-            items: nepalPdc.vdc!
+            items: nepalPdc.localLevel!
                 .map((e) => StringCallback(
                     widget.useNepaliText
                         ? e.textNp.toString()
@@ -211,11 +211,11 @@ class _NepalAdminstrativeAreaState extends State<NepalAdminstrativeArea> {
               areaType: AreaType.localLevel,
               ontap: (String val) {
                 if (widget.useNepaliText) {
-                  selectedArea = nepalPdc.vdc
+                  selectedArea = nepalPdc.localLevel
                       ?.firstWhere((element) => element.textNp == val)
                       .id;
                 } else {
-                  selectedArea = nepalPdc.vdc
+                  selectedArea = nepalPdc.localLevel
                       ?.firstWhere((element) => element.text == val)
                       .id;
                 }
