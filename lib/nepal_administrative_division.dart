@@ -147,10 +147,15 @@ class _NepalAdminstrativeAreaState extends State<NepalAdminstrativeArea> {
             ontap: (String val) {
               selectedArea =
                   nepalPdc.vdc?.firstWhere((element) => element.text == val).id;
+              setState(() {});
             },
             label: widget.localAreaLabel ?? areaLabel,
             items: nepalPdc.vdc!
-                .map((e) => StringCallback(e.text.toString(), () {}))
+                .map((e) => StringCallback(
+                    widget.useNepaliText
+                        ? e.textNp.toString()
+                        : e.text.toString(),
+                    () {}))
                 .toList());
       default:
         return Column(children: [
@@ -205,14 +210,23 @@ class _NepalAdminstrativeAreaState extends State<NepalAdminstrativeArea> {
           customDropdownField(
               areaType: AreaType.localLevel,
               ontap: (String val) {
-                selectedArea = nepalPdc.vdc
-                    ?.firstWhere((element) => element.text == val)
-                    .id;
+                if (widget.useNepaliText) {
+                  selectedArea = nepalPdc.vdc
+                      ?.firstWhere((element) => element.textNp == val)
+                      .id;
+                } else {
+                  selectedArea = nepalPdc.vdc
+                      ?.firstWhere((element) => element.text == val)
+                      .id;
+                }
               },
               label: widget.localAreaLabel ?? areaLabel,
               items: nepalPdc.vdc!
                   .where((element) => element.districtid == selectedDistrict)
-                  .map((e) => StringCallback(e.text.toString(), () {
+                  .map((e) => StringCallback(
+                          widget.useNepaliText
+                              ? e.textNp.toString()
+                              : e.text.toString(), () {
                         // ref.read(selectedAreaProvider.notifier).state = e.id!;
                       }))
                   .toList()),
