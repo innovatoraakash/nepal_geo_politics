@@ -1,6 +1,6 @@
 import 'district.dart';
 import 'province.dart';
-import 'vdc.dart';
+import 'local_level.dart';
 import 'zone.dart';
 
 ///This class contains all the available lists of administrative ares of nepal
@@ -8,9 +8,9 @@ class NepalPdcModel {
   List<Province>? province;
   List<Zone>? zone;
   List<District>? district;
-  List<Vdc>? vdc;
+  List<LocalLevel>? localLevel;
 
-  NepalPdcModel({this.province, this.zone, this.district, this.vdc});
+  NepalPdcModel({this.province, this.zone, this.district, this.localLevel});
 
   factory NepalPdcModel.fromJson(Map<String, dynamic> json) => NepalPdcModel(
         province: (json['province'] as List<dynamic>?)
@@ -22,8 +22,8 @@ class NepalPdcModel {
         district: (json['district'] as List<dynamic>?)
             ?.map((e) => District.fromJson(e as Map<String, dynamic>))
             .toList(),
-        vdc: (json['vdc'] as List<dynamic>?)
-            ?.map((e) => Vdc.fromJson(e as Map<String, dynamic>))
+        localLevel: (json['localLevel'] as List<dynamic>?)
+            ?.map((e) => LocalLevel.fromJson(e as Map<String, dynamic>))
             .toList(),
       );
 
@@ -31,6 +31,6 @@ class NepalPdcModel {
         'province': province?.map((e) => e.toJson()).toList(),
         'zone': zone?.map((e) => e.toJson()).toList(),
         'district': district?.map((e) => e.toJson()).toList(),
-        'vdc': vdc?.map((e) => e.toJson()).toList(),
+        'localLevel': localLevel?.map((e) => e.toJson()).toList(),
       };
 }

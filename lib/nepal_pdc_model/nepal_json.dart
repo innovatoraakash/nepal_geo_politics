@@ -427,7 +427,7 @@ var nepalJson = {
       "textNP": "दार्चुला "
     }
   ],
-  "vdc": [
+  "localLevel": [
     {"id": 1, "districtid": 1, "text": "Aathrai Tribeni Ga. Pa.", "textNP": "आठराई त्रिवेणी गाउँपालिका"},
     {"id": 2, "districtid": 1, "text": "Maiwakhola Ga. Pa.", "textNP": "मैवाखोला गाउँपालिका"},
     {"id": 3, "districtid": 1, "text": "Meringden Ga. Pa.", "textNP": "मेरिङदेन गाउँपालिका"},
