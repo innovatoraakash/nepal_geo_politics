@@ -37,7 +37,11 @@ class NepalAdminstrativeArea extends StatefulWidget {
 
   ///custom label text for [AreaType.localLevel] dropdown
   final String? localAreaLabel;
+
+  ///alighment for selected item 
   final AlignmentDirectional? alignmentDirectional;
+
+  ///alignment for list of dropdown menu items in dropdown popup
   final CrossAxisAlignment? itemsCrossAxisAlignment;
 
   ///set this as true to set text language to Nepali i.e नेपाली
