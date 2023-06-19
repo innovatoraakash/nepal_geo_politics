@@ -1,6 +1,5 @@
 library nepal_administrative_division;
 
-
 import 'package:flutter/material.dart';
 
 import 'enums.dart';
@@ -39,9 +38,19 @@ class NepalAdminstrativeArea extends StatefulWidget {
   ///custom label text for [AreaType.localLevel] dropdown
   final String? localAreaLabel;
   final AlignmentDirectional? alignmentDirectional;
+  final CrossAxisAlignment? itemsCrossAxisAlignment;
 
   ///set this as true to set text language to Nepali i.e नेपाली
   final bool useNepaliText;
+
+  ///set the inital value of the province
+  final String? provinceInitalValue;
+
+  ///set the inital value of the district
+  final String? districtInitalValue;
+
+  ///set the inital value of the local Level
+  final String? localLevelInitalValue;
 
   const NepalAdminstrativeArea(
       {super.key,
@@ -55,7 +64,11 @@ class NepalAdminstrativeArea extends StatefulWidget {
       this.provinceLabel,
       this.localAreaLabel,
       this.useNepaliText = false,
-      this.ontap});
+      this.ontap,
+      this.itemsCrossAxisAlignment,
+      this.provinceInitalValue,
+      this.districtInitalValue,
+      this.localLevelInitalValue});
 
   @override
   State<NepalAdminstrativeArea> createState() => _NepalAdminstrativeAreaState();
@@ -73,6 +86,7 @@ class _NepalAdminstrativeAreaState extends State<NepalAdminstrativeArea> {
   SizedBox customDropdownField(
       {required List<StringCallback> items,
       String? label,
+      String? initalValue,
       Function(String val)? ontap,
       required AreaType areaType}) {
     return SizedBox(
@@ -81,7 +95,11 @@ class _NepalAdminstrativeAreaState extends State<NepalAdminstrativeArea> {
         padding: widget.contentPadding ??
             const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
         child: ClickableDropDown(
-          dropdownvalue: items.isNotEmpty ? items.first.title : null,
+          dropdownvalue: items.isNotEmpty
+              ? (items.map((e) => e.title).toList().contains(initalValue)
+                  ? initalValue
+                  : items.first.title)
+              : null,
           items: items,
           ontap: (String value) {
             if (ontapMain != null) {
@@ -110,6 +128,7 @@ class _NepalAdminstrativeAreaState extends State<NepalAdminstrativeArea> {
     switch (widget.areaType) {
       case AreaType.province:
         return customDropdownField(
+            initalValue: widget.provinceInitalValue,
             areaType: widget.areaType,
             label: widget.provinceLabel ?? provinceLabel,
             ontap: (String val) {
@@ -127,6 +146,7 @@ class _NepalAdminstrativeAreaState extends State<NepalAdminstrativeArea> {
                 .toList());
       case AreaType.district:
         return customDropdownField(
+            initalValue: widget.districtInitalValue,
             areaType: widget.areaType,
             ontap: (String val) {
               selectedDistrict = nepalPdc.district
@@ -144,10 +164,12 @@ class _NepalAdminstrativeAreaState extends State<NepalAdminstrativeArea> {
                 .toList());
       case AreaType.localLevel:
         return customDropdownField(
+            initalValue: widget.localLevelInitalValue,
             areaType: widget.areaType,
             ontap: (String val) {
-              selectedArea =
-                  nepalPdc.localLevel?.firstWhere((element) => element.text == val).id;
+              selectedArea = nepalPdc.localLevel
+                  ?.firstWhere((element) => element.text == val)
+                  .id;
               setState(() {});
             },
             label: widget.localAreaLabel ?? areaLabel,
@@ -161,6 +183,7 @@ class _NepalAdminstrativeAreaState extends State<NepalAdminstrativeArea> {
       default:
         return Column(children: [
           customDropdownField(
+              initalValue: widget.provinceInitalValue,
               areaType: AreaType.province,
               label: widget.provinceLabel ?? provinceLabel,
               ontap: (String val) {
@@ -185,6 +208,7 @@ class _NepalAdminstrativeAreaState extends State<NepalAdminstrativeArea> {
 
           ///district
           customDropdownField(
+              initalValue: widget.districtInitalValue,
               areaType: AreaType.district,
               ontap: (String val) {
                 if (widget.useNepaliText) {
@@ -209,6 +233,7 @@ class _NepalAdminstrativeAreaState extends State<NepalAdminstrativeArea> {
                       () {}))
                   .toList()),
           customDropdownField(
+              initalValue: widget.localLevelInitalValue,
               areaType: AreaType.localLevel,
               ontap: (String val) {
                 if (widget.useNepaliText) {
@@ -251,6 +276,7 @@ class ClickableDropDown extends StatefulWidget {
   final AlignmentDirectional? alignmentDirectional;
   final Function(String val)? ontap;
   final InputDecoration? decoration;
+  final CrossAxisAlignment? crossAxisAlignment;
 
   ClickableDropDown(
       {Key? key,
@@ -259,6 +285,7 @@ class ClickableDropDown extends StatefulWidget {
       this.style,
       this.ontap,
       this.alignmentDirectional,
+      this.crossAxisAlignment,
       this.decoration})
       : super(key: key);
 
@@ -288,6 +315,8 @@ class _ClickableDropDownState extends State<ClickableDropDown> {
           value: items.title,
           onTap: items.onTap,
           child: Column(
+            crossAxisAlignment:
+                widget.crossAxisAlignment ?? CrossAxisAlignment.start,
             children: [
               Text(items.title),
               const Divider(
