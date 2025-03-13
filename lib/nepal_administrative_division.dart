@@ -38,7 +38,7 @@ class NepalAdminstrativeArea extends StatefulWidget {
   ///custom label text for [AreaType.localLevel] dropdown
   final String? localAreaLabel;
 
-  ///alighment for selected item 
+  ///alighment for selected item
   final AlignmentDirectional? alignmentDirectional;
 
   ///alignment for list of dropdown menu items in dropdown popup
@@ -46,6 +46,9 @@ class NepalAdminstrativeArea extends StatefulWidget {
 
   ///set this as true to set text language to Nepali i.e नेपाली
   final bool useNepaliText;
+
+  ///set this as true to set text language to Nepali i.e नेपाली
+  final bool autoSelectFirstItem;
 
   ///set the inital value of the province
   final String? provinceInitalValue;
@@ -68,6 +71,7 @@ class NepalAdminstrativeArea extends StatefulWidget {
       this.provinceLabel,
       this.localAreaLabel,
       this.useNepaliText = false,
+      this.autoSelectFirstItem = false,
       this.ontap,
       this.itemsCrossAxisAlignment,
       this.provinceInitalValue,
@@ -99,11 +103,8 @@ class _NepalAdminstrativeAreaState extends State<NepalAdminstrativeArea> {
         padding: widget.contentPadding ??
             const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
         child: ClickableDropDown(
-          dropdownvalue: items.isNotEmpty
-              ? (items.map((e) => e.title).toList().contains(initalValue)
-                  ? initalValue
-                  : items.first.title)
-              : null,
+          autoSelectFirstItem: widget.autoSelectFirstItem,
+          dropdownvalue: initalValue,
           items: items,
           ontap: (String value) {
             if (ontapMain != null) {
@@ -114,7 +115,7 @@ class _NepalAdminstrativeAreaState extends State<NepalAdminstrativeArea> {
             }
           },
           alignmentDirectional: widget.alignmentDirectional,
-          decoration: widget.decoration ??
+          decoration: widget.decoration?.copyWith(labelText: label) ??
               InputDecoration(
                 border: const OutlineInputBorder(),
                 labelText: label,
@@ -127,7 +128,7 @@ class _NepalAdminstrativeAreaState extends State<NepalAdminstrativeArea> {
   @override
   Widget build(BuildContext context) {
     String provinceLabel = !widget.useNepaliText ? "Province" : "प्रदेश";
-    String districtLabel = !widget.useNepaliText ? "District" : "प्रदेश";
+    String districtLabel = !widget.useNepaliText ? "District" : "जिल्ला";
     String areaLabel = !widget.useNepaliText ? "Local Level" : "स्थानीय तह";
     switch (widget.areaType) {
       case AreaType.province:
@@ -200,6 +201,7 @@ class _NepalAdminstrativeAreaState extends State<NepalAdminstrativeArea> {
                       ?.firstWhere((element) => element.text == val)
                       .id;
                 }
+                selectedDistrict = null;
                 setState(() {});
               },
               items: nepalPdc.province!
@@ -224,7 +226,7 @@ class _NepalAdminstrativeAreaState extends State<NepalAdminstrativeArea> {
                       ?.firstWhere((element) => element.text == val)
                       .id;
                 }
-
+                selectedArea = null;
                 setState(() {});
               },
               label: widget.distrctLabel ?? districtLabel,
@@ -277,6 +279,7 @@ class ClickableDropDown extends StatefulWidget {
   String? dropdownvalue;
   final List<StringCallback> items;
   final TextStyle? style;
+  final bool autoSelectFirstItem;
   final AlignmentDirectional? alignmentDirectional;
   final Function(String val)? ontap;
   final InputDecoration? decoration;
@@ -287,6 +290,7 @@ class ClickableDropDown extends StatefulWidget {
       this.dropdownvalue,
       required this.items,
       this.style,
+      this.autoSelectFirstItem = false,
       this.ontap,
       this.alignmentDirectional,
       this.crossAxisAlignment,
@@ -301,21 +305,20 @@ class _ClickableDropDownState extends State<ClickableDropDown> {
   String? dropdownValue;
   @override
   Widget build(BuildContext context) {
-    return DropdownButtonFormField(
+    return DropdownButtonFormField<String?>(
       decoration: widget.decoration,
       style: widget.style,
       alignment:
           widget.alignmentDirectional ?? AlignmentDirectional.centerStart,
       isExpanded: true,
-      value: widget.dropdownvalue ??
-          dropdownValue ??
-          (widget.items.isNotEmpty ? widget.items.first.title : null),
+      value:
+          _dropdownValue(widget.items, dropdownValue ?? widget.dropdownvalue),
       // Down Arrow Icon
       icon: const Icon(Icons.keyboard_arrow_down),
 
       // Array list of items
       items: widget.items.map((StringCallback items) {
-        return DropdownMenuItem(
+        return DropdownMenuItem<String?>(
           value: items.title,
           onTap: items.onTap,
           child: Column(
@@ -344,5 +347,16 @@ class _ClickableDropDownState extends State<ClickableDropDown> {
         setState(() {});
       },
     );
+  }
+
+  String? _dropdownValue(List<StringCallback> items, String? initalValue) {
+    if (items.isEmpty) {
+      return null;
+    }
+    return (items.map((e) => e.title).toList().contains(initalValue)
+        ? initalValue
+        : widget.autoSelectFirstItem
+            ? items.first.title
+            : null);
   }
 }

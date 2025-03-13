@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Material App Bar'),
         ),
-        body: Column(
+        body: ListView(
           children: [
             const NepalAdminstrativeArea(
               areaType: AreaType.province,
@@ -27,8 +27,16 @@ class MyApp extends StatelessWidget {
               areaType: AreaType.localLevel,
             ),
             NepalAdminstrativeArea(
-              provinceLabel: "state",
+              autoSelectFirstItem: true,
               useNepaliText: true,
+              decoration: const InputDecoration(),
+              ontap: (value, areatype) {
+                debugPrint(value);
+                debugPrint(areatype.toString());
+              },
+            ),
+            const Divider(),
+            NepalAdminstrativeArea(
               ontap: (value, areatype) {
                 debugPrint(value);
                 debugPrint(areatype.toString());
